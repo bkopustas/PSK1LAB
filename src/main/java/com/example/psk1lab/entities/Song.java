@@ -3,6 +3,7 @@ package com.example.psk1lab.entities;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.enterprise.context.SessionScoped;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -33,10 +34,12 @@ public class Song implements Serializable {
     private String song_name;
 
     @ManyToMany
-    @JoinTable(name = "ARTISTS_SONGS")
-    @JoinColumn(name = "ARTIST_ID")
+    @JoinTable(name = "ARTISTS_SONGS",
+    joinColumns = @JoinColumn(name = "ARTIST"),
+    inverseJoinColumns = @JoinColumn(name = "SONG"))
+    /*@JoinColumn(name = "ARTIST_ID")
+    @in*/
     private List<Artist> artistList = new ArrayList<>();
-
     @ManyToOne
     @JoinColumn(name = "ALBUM_ID")
     private Album album;
@@ -45,13 +48,13 @@ public class Song implements Serializable {
 
     }
 
-    @Override
+    /*@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Song song = (Song) o;
         return Objects.equals(song_id, song.song_id) && Objects.equals(artist_id, song.artist_id) && Objects.equals(song_name, song.song_name) && album.equals(song.album);
-    }
+    }*/
 
     @Override
     public int hashCode() {

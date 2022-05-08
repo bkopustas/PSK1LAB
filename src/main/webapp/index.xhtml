@@ -7,10 +7,6 @@
 <h:head><title>PSK1LAB</title></h:head>
 <h:body>
     <h2>Artists:</h2>
-    <!--
-    <p>#{pirmasKomponentas.sakykLabas()}</p>
-    <p>#{pirmasKomponentas.getClass().name}</p>
-    -->
 
     <ol>
         <ui:repeat value="#{artists.allArtists}" var="artist">
@@ -22,5 +18,6 @@
         <h:inputText value="#{artists.artistToCreate.artist_name}" required="true"/>
         <h:commandButton value="Add new artist" actionListener="#{artists.createArtist}" action="index?faces-redirect=true"/>
     </h:form>
+    <h:link outcome="myBatis/artists" value="MyBatis implementation"/>
 </h:body>
 </html>

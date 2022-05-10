@@ -1,5 +1,6 @@
 package com.example.psk1lab.entities;
 
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,32 +21,26 @@ public class Artist implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private Integer artist_id;
+    private Integer id;
 
     @Size(max = 50)
     @Column(name = "ARTIST_NAME", nullable = false, unique = true)
-    private String artist_name;
+    private String artistName;
 
     @OneToMany(mappedBy = "artist")
-    private List<Album> albumList = new ArrayList<>();
+    private List<Song> songs = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "artistList")
-    private List<Song> songList = new ArrayList<>();
-
-    public Artist(){
-
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Artist artist = (Artist) o;
-        return artist_id.equals(artist.artist_id) && artist_name.equals(artist.artist_name);
+        return id.equals(artist.id) && artistName.equals(artist.artistName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(artist_id, artist_name);
+        return Objects.hash(id, artistName);
     }
 }

@@ -28,7 +28,10 @@ public class Artists {
     public void init() { loadAllArtists();}
 
     @Transactional
-    public void createArtist(){ this.artistsDAO.persist(artistToCreate);}
+    public String createArtist(){
+        this.artistsDAO.persist(artistToCreate);
+        return "index?faces-redirect=true";
+    }
 
     private void loadAllArtists(){
         this.allArtists = artistsDAO.loadAll();

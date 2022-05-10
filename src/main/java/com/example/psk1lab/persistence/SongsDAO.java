@@ -13,9 +13,6 @@ public class SongsDAO {
     @Inject
     private EntityManager em;
 
-    public List<Song> loadAll() {
-        return em.createNamedQuery("Song.findAll", Song.class).getResultList();
-    }
 
     public void setEm(EntityManager em) {
         this.em = em;
@@ -25,8 +22,11 @@ public class SongsDAO {
         this.em.persist(song);
     }
 
-    public Song findOne(Integer song_id) {
-        return em.find(Song.class, song_id);
+    public Song findOne(Integer id) {
+        return em.find(Song.class, id);
     }
 
+    public Song update(Song song){
+        return em.merge(song);
+    }
 }

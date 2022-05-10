@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias type="com.example.psk1lab.mybatis.model.Artist" alias="Artist"/>
+        <typeAlias type="com.example.psk1lab.mybatis.model.Genre" alias="Genre"/>
+        <typeAlias type="com.example.psk1lab.mybatis.model.Song" alias="Song"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="MANAGED"/>
+            <dataSource type="JNDI">
+                <property name="data_source" value="MusicDataSource"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mybatis.xml/ArtistMapper.xml"/>
+        <mapper resource="mybatis.xml/GenreMapper.xml"/>
+        <mapper resource="mybatis.xml/SongMapper.xml"/>
+        <mapper resource="mybatis.xml/GenreSongsMapper.xml"/>
+    </mappers>
+</configuration>

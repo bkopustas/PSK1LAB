@@ -20,41 +20,29 @@ public class Song implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer song_id;
-
-//    @Column(name = "ALBUM")
-//    private Integer album_id;
-
-    @Column(name = "ARTIST")
-    private Integer artist_id;
+    private Integer id;
 
     @Size(max = 50)
-    @Column(name = "SONG_NAME", nullable = false, unique = true)
-    private String song_name;
-
-    @ManyToMany
-    @JoinTable(name = "ARTISTS_SONGS")
-    @JoinColumn(name = "ARTIST_ID")
-    private List<Artist> artistList = new ArrayList<>();
+    @Column(name = "SONG_NAME", nullable = false)
+    private String songName;
 
     @ManyToOne
-    @JoinColumn(name = "ALBUM_ID")
-    private Album album;
+    @JoinColumn(name = "ARTIST_ID")
+    private Artist artist;
 
-    public Song() {
-
-    }
+    @ManyToMany
+    List<Genre> genre;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Song song = (Song) o;
-        return Objects.equals(song_id, song.song_id) && Objects.equals(artist_id, song.artist_id) && Objects.equals(song_name, song.song_name) && album.equals(song.album);
+        return Objects.equals(id, song.id) && Objects.equals(songName, song.songName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(song_id, artist_id, song_name, album);
+        return Objects.hash(id, songName);
     }
 }

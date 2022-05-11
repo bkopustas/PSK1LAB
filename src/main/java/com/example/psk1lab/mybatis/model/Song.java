@@ -1,5 +1,7 @@
 package com.example.psk1lab.mybatis.model;
 
+import java.util.List;
+
 public class Song {
     /**
      *
@@ -99,4 +101,6 @@ public class Song {
     public void setArtistId(Integer artistId) {
         this.artistId = artistId;
     }
+
+    private List<Genre> genres;
 }

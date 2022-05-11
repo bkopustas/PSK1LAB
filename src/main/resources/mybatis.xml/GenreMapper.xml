@@ -9,7 +9,18 @@
     -->
     <id column="ID" jdbcType="BIGINT" property="id" />
     <result column="GENRE_NAME" jdbcType="VARCHAR" property="genreName" />
+
+    <collection property="songs" javaType="ArrayList"
+                ofType="com.example.psk1lab.mybatis.model.Song" column="id"
+                select="selectSongsForGenre" />
   </resultMap>
+  <select id="selectSongsForGenre" resultType="com.example.psk1lab.mybatis.model.Song">
+    SELECT *
+    FROM PUBLIC.SONG s
+           JOIN PUBLIC.SONGS_GENRE sg on s.id = sg.song_id
+    WHERE sg.genre_id = #{id, jdbcType=BIGINT}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--
       WARNING - @mbg.generated

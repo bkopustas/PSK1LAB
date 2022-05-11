@@ -13,6 +13,7 @@ public class GenresDAO {
 
     @Inject
     private EntityManager em;
+    public void setEm(EntityManager em) {this.em = em;}
 
     public void persist(Genre genre) {
         this.em.persist(genre);

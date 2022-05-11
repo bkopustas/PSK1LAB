@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import java.util.List;
 
+
 @Getter @Setter
 public class Genre {
     /**
@@ -44,8 +45,8 @@ public class Genre {
      *
      * @mbg.generated Wed May 11 10:29:50 EEST 2022
      */
-    public void setId(Long id) {
-        this.id = Math.toIntExact(id);
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     /**

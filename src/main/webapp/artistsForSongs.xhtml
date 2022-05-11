@@ -6,7 +6,7 @@
 >
 <h:head/>
 <h:body>
-    <h2>Select one of the available Authors:</h2>
+    <h2>Select one of the available Artists:</h2>
     <ol>
         <ui:repeat value="#{artists.allArtists}" var="artist">
             <li><h:link value="#{artist.artistName}" outcome="songs?artistId=#{artist.id}"/></li>

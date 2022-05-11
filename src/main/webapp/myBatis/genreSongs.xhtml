@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head/>
+<h:body>
+
+    <h2>Assign song to this genre</h2>
+
+    <h3>Choose from existing songs:</h3>
+
+    <h:form>
+        <h:panelGrid columns="2">
+            <label>Song name: </label>
+            <ui:repeat value="#{genreSongsMB.allExistingSongs}" var="song">
+                <h:commandButton value="#{song.songName}" action="#{genreSongsMB.addSongForGenre(song.id)}">
+                    <f:param name="genreId" value="#{genreSongsMB.genre.id}" />
+                </h:commandButton>
+            </ui:repeat>
+        </h:panelGrid>
+    </h:form>
+
+    <h3>Or add a new one:</h3>
+    <h:form>
+        <label>Song name: </label>
+        <h:inputText a:placeholder="songName" value="#{genreSongsMB.songToAdd.songName}" required="true" />
+        <h:commandButton value="Assign" action="#{genreSongsMB.addNewSongForGenre}" >
+            <f:param name="genreId" value="#{genreSongsMB.genre.id}" />
+        </h:commandButton>
+    </h:form>
+
+    <h:link outcome="/myBatis/genresAndSongs" value="Back to list"/>
+</h:body>
+</html>

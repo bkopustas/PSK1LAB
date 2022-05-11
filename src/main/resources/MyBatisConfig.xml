@@ -20,6 +20,6 @@
         <mapper resource="mybatis.xml/ArtistMapper.xml"/>
         <mapper resource="mybatis.xml/GenreMapper.xml"/>
         <mapper resource="mybatis.xml/SongMapper.xml"/>
-        <mapper resource="mybatis.xml/GenreSongsMapper.xml"/>
+        <mapper resource="mybatis.xml/SongsGenreMapper.xml"/>
     </mappers>
 </configuration>

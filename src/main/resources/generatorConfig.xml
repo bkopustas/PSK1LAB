@@ -26,7 +26,7 @@
         <table schema="public" tableName="song">
             <generatedKey column="id" identity="true" sqlStatement="JDBC" />
         </table>
-        <table schema="public" tableName="Genre_Songs">
+        <table schema="public" tableName="Songs_Genre">
             <generatedKey column="id" identity="true" sqlStatement="JDBC" />
         </table>
     </context>

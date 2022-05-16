@@ -1,7 +1,9 @@
 package com.example.psk1lab.entities;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,16 +13,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
+
 @NamedQueries({
         @NamedQuery(name = "Artist.findAll", query = "select art from Artist as art ")
 })
-@Table(name = "ARTIST")
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter @Setter
+@Entity
+@Table(name = "ARTIST")
+
 public class Artist implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
     private Integer id;
 
     @Size(max = 50)
@@ -33,8 +38,8 @@ public class Artist implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {return true;}
+        if (o == null || getClass() != o.getClass()) {return false;}
         Artist artist = (Artist) o;
         return id.equals(artist.id) && artistName.equals(artist.artistName);
     }

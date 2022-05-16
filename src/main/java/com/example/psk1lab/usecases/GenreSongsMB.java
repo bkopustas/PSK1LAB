@@ -49,10 +49,10 @@ public class GenreSongsMB implements Serializable {
     @Transactional
     public String addSongForGenre(Integer SongId) {
         if (songsGenreMapper.getResultCountBySongAndGenreId(SongId, this.genre.getId()) == 0) {
-            SongsGenre SongsGenre = new SongsGenre();
-            SongsGenre.setSongId(SongId);
-            SongsGenre.setGenreId(this.genre.getId());
-            songsGenreMapper.insert(SongsGenre);
+            SongsGenre songsGenre = new SongsGenre();
+            songsGenre.setSongId(SongId);
+            songsGenre.setGenreId(this.genre.getId());
+            songsGenreMapper.insert(songsGenre);
         }
         return "/myBatis/genresAndSongs?faces-redirect=true";
     }
@@ -63,10 +63,10 @@ public class GenreSongsMB implements Serializable {
             songMapper.insert(songToAdd);
         }
         Song addedSong = songMapper.findByName(songToAdd.getSongName());
-        SongsGenre SongsGenre = new SongsGenre();
-        SongsGenre.setSongId(addedSong.getId());
-        SongsGenre.setGenreId(this.genre.getId());
-        songsGenreMapper.insert(SongsGenre);
+        SongsGenre songsGenre = new SongsGenre();
+        songsGenre.setSongId(addedSong.getId());
+        songsGenre.setGenreId(this.genre.getId());
+        songsGenreMapper.insert(songsGenre);
         return "/myBatis/genresAndSongs?faces-redirect=true";
     }
 

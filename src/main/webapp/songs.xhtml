@@ -14,7 +14,7 @@
         </ui:repeat>
     </ol>
     <h:form>
-        <h:inputText a:placeholder="title" value="#{artistSongs.songToCreate.songName}" required="true" />
+        <h:inputText a:placeholder="songName" value="#{artistSongs.songToCreate.songName}" required="true" />
         <h:commandButton value="Assign Song to the Artist" action="#{artistSongs.createSong}" >
             <f:param name="artistId" value="#{artistSongs.artist.id}" />
         </h:commandButton>

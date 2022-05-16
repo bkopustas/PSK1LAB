@@ -28,7 +28,7 @@ public class GenresAndSongsMB implements Serializable {
 
     @PostConstruct
     private void init() {
-        loadAllReaders();
+        loadAllGenres();
     }
 
     @Transactional
@@ -37,7 +37,7 @@ public class GenresAndSongsMB implements Serializable {
         return "/myBatis/genresAndSongs?faces-redirect=true";
     }
 
-    private void loadAllReaders() {
+    private void loadAllGenres() {
         allGenres = genreMapper.selectAll();
     }
 }

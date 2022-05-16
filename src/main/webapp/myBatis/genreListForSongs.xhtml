@@ -8,7 +8,7 @@
     <h2>Genres that describe #{songGenresMB.song.songName}:</h2>
     <ol>
         <ui:repeat value="#{songGenresMB.song.genres}" var="genre">
-            <li>#{genre.genreName}</li>
+            <li>#{genre.id}</li>
         </ui:repeat>
     </ol>
     <h:link outcome="/myBatis/genresAndSongs" value="Back to list"/>

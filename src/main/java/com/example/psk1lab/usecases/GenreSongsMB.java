@@ -13,6 +13,7 @@ import javax.transaction.Transactional;
 
 import com.example.psk1lab.mybatis.dao.GenreMapper;
 import com.example.psk1lab.mybatis.dao.SongMapper;
+import com.example.psk1lab.mybatis.dao.SongsGenreMapper;
 import com.example.psk1lab.mybatis.model.Genre;
 import com.example.psk1lab.mybatis.model.Song;
 import com.example.psk1lab.mybatis.model.SongsGenre;
@@ -26,13 +27,13 @@ import lombok.Setter;
 public class GenreSongsMB implements Serializable {
 
     @Inject
-    private SongMapper SongMapper;
+    private SongMapper songMapper;
 
     @Inject
     private GenreMapper genreMapper;
 
     @Inject
-    private com.example.psk1lab.mybatis.dao.SongsGenreMapper SongsGenreMapper;
+    private SongsGenreMapper songsGenreMapper;
 
     @Getter
     @Setter
@@ -40,32 +41,32 @@ public class GenreSongsMB implements Serializable {
 
     @Getter
     @Setter
-    private Song SongToAdd = new Song();
+    private Song songToAdd = new Song();
 
     @Getter
     private List<Song> allExistingSongs;
 
     @Transactional
     public String addSongForGenre(Integer SongId) {
-        if (SongsGenreMapper.getResultCountBySongAndGenreId(SongId, this.genre.getId()) == 0) {
+        if (songsGenreMapper.getResultCountBySongAndGenreId(SongId, this.genre.getId()) == 0) {
             SongsGenre SongsGenre = new SongsGenre();
             SongsGenre.setSongId(SongId);
             SongsGenre.setGenreId(this.genre.getId());
-            SongsGenreMapper.insert(SongsGenre);
+            songsGenreMapper.insert(SongsGenre);
         }
         return "/myBatis/genresAndSongs?faces-redirect=true";
     }
 
     @Transactional
     public String addNewSongForGenre() {
-        if (SongMapper.getResultCountBySongName(SongToAdd.getSongName()) == 0) {
-            SongMapper.insert(SongToAdd);
+        if (songMapper.getResultCountBySongName(songToAdd.getSongName()) == 0) {
+            songMapper.insert(songToAdd);
         }
-        Song addedSong = SongMapper.findByName(SongToAdd.getSongName());
+        Song addedSong = songMapper.findByName(songToAdd.getSongName());
         SongsGenre SongsGenre = new SongsGenre();
         SongsGenre.setSongId(addedSong.getId());
         SongsGenre.setGenreId(this.genre.getId());
-        SongsGenreMapper.insert(SongsGenre);
+        songsGenreMapper.insert(SongsGenre);
         return "/myBatis/genresAndSongs?faces-redirect=true";
     }
 
@@ -75,9 +76,9 @@ public class GenreSongsMB implements Serializable {
                 .getExternalContext()
                 .getRequestParameterMap();
 
-        Long genreId = Long.parseLong(requestParams.get("genreId"));
+        Integer genreId = Integer.parseInt(requestParams.get("genreId"));
         this.genre = genreMapper.selectByPrimaryKey(genreId);
-        this.allExistingSongs = this.SongMapper.selectAll();
+        this.allExistingSongs = this.songMapper.selectAll();
     }
 }
 

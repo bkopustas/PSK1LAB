@@ -7,13 +7,6 @@ import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.Map;
 
-import java.io.Serializable;
-        import java.util.Map;
-
-        import javax.annotation.PostConstruct;
-        import javax.enterprise.inject.Model;
-        import javax.faces.context.FacesContext;
-        import javax.inject.Inject;
 
         import lombok.Getter;
         import lombok.Setter;

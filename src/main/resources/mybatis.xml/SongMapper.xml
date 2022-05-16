@@ -20,7 +20,7 @@
     SELECT *
     FROM PUBLIC.GENRE g
            JOIN PUBLIC.SONGS_GENRE sg on g.id = sg.genre_id
-    WHERE sg.song_id = #{id, jdbcType=BIGINT}
+    WHERE sg.song_id = #{id, jdbcType=INTEGER}
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

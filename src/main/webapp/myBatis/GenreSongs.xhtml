@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head/>
+<h:body>
+
+    <h2>Add song to this genre</h2>
+    <h:form>
+        <label>Song name: </label>
+        <h:inputText a:placeholder="title" value="#{genreSongsMB.songToAdd.title}" required="true" />
+        <h:commandButton value="Assign" action="#{genreSongsMB.addNewSongForGenre}" >
+            <f:param name="genreId" value="#{genreSongsMB.genre.id}" />
+        </h:commandButton>
+    </h:form>
+
+    <h:link outcome="/myBatis/genresAndSongs" value="Back to list"/>
+</h:body>
+</html>

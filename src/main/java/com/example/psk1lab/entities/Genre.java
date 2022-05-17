@@ -1,8 +1,5 @@
 package com.example.psk1lab.entities;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.awt.print.Book;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,29 +15,31 @@ import java.util.Objects;
 
 
 @NamedQueries({
-        @NamedQuery(name = "Song.findAll", query = "SELECT s FROM Song AS s")
+        @NamedQuery(name = "Genre.findAll", query = "SELECT l FROM Genre AS l"),
+        @NamedQuery(name = "Genre.findOne", query = " SELECT l FROM Genre  AS l WHERE l.name = :name")
 })
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "SONG")
-public class Song implements Serializable {
+@Table(name = "GENRE")
+public class Genre implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "TITLE", nullable = false)
-    private String title;
+    @Size(max = 20)
+    @Column(name = "NAME", nullable = false)
+    private String name;
 
-    @ManyToOne
-    @JoinColumn(name="AUTHOR_ID")
-    private Artist artist;
-
-    @ManyToMany(mappedBy = "songs")
-    List<Genre> genres;
+    @Column
+    @ManyToMany
+    @JoinTable(name = "SONGS_GENRE",
+            joinColumns = @JoinColumn(name = "GENRE_ID"),
+            inverseJoinColumns = @JoinColumn(name = "SONG_ID"))
+    List<Song> songs = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {
@@ -49,12 +49,12 @@ public class Song implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Song song = (Song) o;
-        return id.equals(song.id) && title.equals(song.title);
+        Genre genre = (Genre) o;
+        return id.equals(genre.id) && name.equals(genre.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title);
+        return Objects.hash(id, name);
     }
 }

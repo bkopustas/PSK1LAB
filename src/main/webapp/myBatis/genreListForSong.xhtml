@@ -7,7 +7,7 @@
 <h:body>
     <h2>Genres that define #{songGenreMB.song.title}:</h2>
     <ol>
-        <ui:repeat value="#{songGenreMB.song.genres}" var="genre">
+        <ui:repeat value="#{genresAndSongsMB.allGenres}" var="genre">
             <li>#{genre.name}</li>
         </ui:repeat>
     </ol>

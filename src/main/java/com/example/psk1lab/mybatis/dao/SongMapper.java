@@ -1,5 +1,6 @@
 package com.example.psk1lab.mybatis.dao;
 
+import com.example.psk1lab.mybatis.model.Genre;
 import com.example.psk1lab.mybatis.model.Song;
 import org.mybatis.cdi.Mapper;
 
@@ -49,4 +50,5 @@ public interface SongMapper {
     Song findByName(String name);
 
     int getResultCountBySongTitle(String name);
+
 }

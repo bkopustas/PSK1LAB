@@ -35,7 +35,7 @@ public class Song implements Serializable {
     private String title;
 
     @ManyToOne
-    @JoinColumn(name="AUTHOR_ID")
+    @JoinColumn(name="ARTIST_ID")
     private Artist artist;
 
     @ManyToMany(mappedBy = "songs")

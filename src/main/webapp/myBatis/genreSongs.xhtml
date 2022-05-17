@@ -9,7 +9,19 @@
 <h:body>
 
     <h2>Add song to this genre</h2>
+    <h3>Choose from existing songs:</h3>
     <h:form>
+    <h:panelGrid columns="2">
+        <label>Song name: </label>
+        <ui:repeat value="#{genreSongsMB.allExistingSongs}" var="song">
+            <h:commandButton value="#{song.title}" action="#{genreSongsMB.addSongForGenre(song.id)}">
+                <f:param name="genreId" value="#{genreSongsMB.genre.id}" />
+            </h:commandButton>
+        </ui:repeat>
+    </h:panelGrid>
+    </h:form>
+    <h:form>
+        <h3>Add a new song</h3>
         <label>Song name: </label>
         <h:inputText a:placeholder="title" value="#{genreSongsMB.songToAdd.title}" required="true" />
         <h:commandButton value="Assign" action="#{genreSongsMB.addNewSongForGenre}" >

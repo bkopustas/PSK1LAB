@@ -13,13 +13,14 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 import static javax.faces.context.FacesContext.getCurrentInstance;
 
 @Model
-public class GenreSongsMB {
+public class GenreSongsMB implements Serializable {
     @Inject
     private SongMapper songMapper;
 

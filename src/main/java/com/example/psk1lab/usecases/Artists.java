@@ -1,6 +1,8 @@
 package com.example.psk1lab.usecases;
 
+import com.example.psk1lab.decorators.ArtistDecorator;
 import com.example.psk1lab.entities.Artist;
+import com.example.psk1lab.interceptors.LoggedInvocation;
 import com.example.psk1lab.persistence.ArtistDAO;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +19,9 @@ import java.util.List;
 public class Artists implements Serializable {
     @Inject
     private ArtistDAO artistDAO;
+
+    @Inject
+    private ArtistDecorator artistDecorator;
 
     @Getter
     @Setter
@@ -35,8 +40,10 @@ public class Artists implements Serializable {
     }
 
     @Transactional
+    @LoggedInvocation
     public String createArtist() {
         this.artistDAO.persist(artistToCreate);
+        System.out.println("Decorator implementation: " + artistDecorator.DecoratedInt(2));
         return "index?faces-redirect=true";
     }
 

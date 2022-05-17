@@ -1,13 +1,18 @@
 package com.example.psk1lab.usecases;
 
+import com.example.psk1lab.alternatives.Message;
 import com.example.psk1lab.entities.Artist;
 import com.example.psk1lab.entities.Song;
 import com.example.psk1lab.persistence.ArtistDAO;
 import com.example.psk1lab.persistence.SongDAO;
+import com.example.psk1lab.qualifiers.Cd;
+import com.example.psk1lab.qualifiers.CdSongType;
+import com.example.psk1lab.qualifiers.SongTypeProcessor;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -22,6 +27,15 @@ public class ArtistSongs implements Serializable {
 
     @Inject
     private SongDAO songDAO;
+
+    @Inject
+    private Message message;
+
+    @Inject @Cd
+    SongTypeProcessor songTypeProcessor;
+
+    @Inject @Any
+    private CdSongType cdSongType;
 
     @Getter
     @Setter
@@ -43,6 +57,9 @@ public class ArtistSongs implements Serializable {
     public String createSong() {
         songToCreate.setArtist(this.artist);
         songDAO.persist(songToCreate);
+        System.out.println(message.WriteMessage());
+        System.out.println(songTypeProcessor.SongType());
+        System.out.println(cdSongType.SongType());
         return "songs?faces-redirect=true&artistId=" + this.artist.getId();
     }
 

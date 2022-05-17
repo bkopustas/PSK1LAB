@@ -6,6 +6,8 @@ import com.example.psk1lab.mybatis.dao.SongMapper;
 import com.example.psk1lab.mybatis.dao.SongsGenreMapper;
 import com.example.psk1lab.mybatis.model.Genre;
 import com.example.psk1lab.mybatis.model.SongsGenre;
+import com.example.psk1lab.qualifiers.SongTypeProcessor;
+import com.example.psk1lab.qualifiers.Vinyl;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,6 +31,9 @@ public class GenreSongsMB implements Serializable {
 
     @Inject
     private SongsGenreMapper songsGenreMapper;
+
+    @Inject @Vinyl
+    SongTypeProcessor songTypeProcessorVinyl;
 
     @Getter
     @Setter
@@ -56,6 +61,7 @@ public class GenreSongsMB implements Serializable {
     public String addNewSongForGenre() {
         if (songMapper.getResultCountBySongTitle(songToAdd.getTitle()) == 0) {
             songMapper.insert(songToAdd);
+            System.out.println(songTypeProcessorVinyl.SongType());
         }
         Song addedSong = songMapper.findByName(songToAdd.getTitle());
         SongsGenre songsGenre = new SongsGenre();

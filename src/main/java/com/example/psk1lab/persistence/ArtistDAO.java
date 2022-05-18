@@ -20,4 +20,8 @@ public class ArtistDAO {
     public void persist(Artist artist) {this.entityManager.persist(artist);}
 
     public Artist findOne(Long id) {return entityManager.find(Artist.class, id);}
+
+    public Artist update(Artist artist){
+        return entityManager.merge(artist);
+    }
 }

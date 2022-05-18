@@ -10,6 +10,8 @@
     <ol>
         <ui:repeat value="#{artists.allArtists}" var="artist">
             <li><h:link value="#{artist.name}" outcome="songs?artistId=#{artist.id}"/></li>
+
+            <h:button value="Update" outcome="artistDetails?artistId=#{artist.id}"/>
         </ui:repeat>
     </ol>
     <h:form>

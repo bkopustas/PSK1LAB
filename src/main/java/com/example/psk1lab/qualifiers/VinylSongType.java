@@ -5,7 +5,7 @@ import javax.enterprise.context.Dependent;
 
 @Vinyl
 @Dependent
-public class VinylSongType {
+public class VinylSongType implements SongTypeProcessor{
     public String SongType(){
         return "Song type is vinyl";
     }

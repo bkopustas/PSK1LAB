@@ -32,6 +32,10 @@ public class Artist implements Serializable {
     @Size(max = 20)
     @Column(name = "NAME", nullable = false)
     private String name;
+
+    @Version
+    @Column(name = "OPT_LOCK_VERSION", columnDefinition = "integer default 0")
+    private Integer version;
     
     @OneToMany(mappedBy = "artist")
     private List<Song> songs = new ArrayList<>();
